@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dostonbek Davlatov — Portfolio</title>
+    <link href="./dist/output.css" rel="stylesheet" />
+</head>
+
+<body class="bg-black text-white min-h-screen">
+    <!-- Background glow -->
+    <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute -top-32 -left-24 h-72 w-72 rounded-full bg-purple-600/30 blur-3xl"></div>
+        <div class="absolute -bottom-24 -right-20 h-80 w-80 rounded-full bg-blue-500/30 blur-3xl"></div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="sticky top-0 backdrop-blur supports-[backdrop-filter]:bg-black/40">
+        <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+            <a href="#home" class="text-lg font-semibold tracking-wide">
+                Dostonbek<span class="text-purple-400">Davla</span>tov
+            </a>
+            <button id="menuBtn" class="md:hidden rounded border border-white/10 px-3 py-1.5 text-sm">Menu</button>
+            <ul id="menu" class="hidden gap-6 text-sm md:flex">
+                <li><a href="#projects" class="text-white/80 hover:text-white">Projects</a></li>
+                <li><a href="#skills" class="text-white/80 hover:text-white">Skills</a></li>
+                <li><a href="#about" class="text-white/80 hover:text-white">About</a></li>
+                <li><a href="#contact" class="rounded bg-white/10 px-3 py-1.5 hover:bg-white/15">Contact</a></li>
+            </ul>
+        </nav>
+        <!-- Mobile dropdown -->
+        <ul id="menuMobile" class="mx-auto hidden max-w-6xl flex-col gap-3 px-4 pb-4 text-sm md:hidden">
+            <li><a href="#projects" class="block rounded px-3 py-2 hover:bg-white/10">Projects</a></li>
+            <li><a href="#skills" class="block rounded px-3 py-2 hover:bg-white/10">Skills</a></li>
+            <li><a href="#about" class="block rounded px-3 py-2 hover:bg-white/10">About</a></li>
+            <li><a href="#contact" class="block rounded bg-white/10 px-3 py-2 hover:bg-white/15">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- Hero -->
+    <section id="home"
+        class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
+        <div>
+            <p class="mb-3 text-xs uppercase tracking-[0.2em] text-white/60">AI • Product • Startups</p>
+
+            <h1 class="text-4xl font-bold leading-tight md:text-6xl">
+                Hi, I’m
+                <span id="nameTyper" class="text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text"
+                    data-text="Dostonbek Davlatov"></span>
+            </h1>
+
+            <p id="tagline" class="mt-4 text-white/70 md:text-lg min-h-[3rem]"
+                data-text="Tech-savvy builder and problem solver. I design, ship, and support AI-powered tools. Future founder energy. Let’s build something useful.">
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+                <a href="#projects"
+                    class="rounded-lg bg-gradient-to-r from-purple-500 to-cyan-500 px-5 py-2.5 font-medium text-black">
+                    View Projects
+                </a>
+                <a href="#contact"
+                    class="rounded-lg border border-white/15 px-5 py-2.5 font-medium text-white/90 hover:bg-white/10">
+                    Contact Me
+                </a>
+                <a href="./Dostonbek_Davlatov_Resume.pdf"
+                    class="rounded-lg border border-white/15 px-5 py-2.5 font-medium text-white/90 hover:bg-white/10">
+                    Download Resume
+                </a>
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-3 text-sm text-white/60">
+                <span class="rounded-full border border-white/10 px-3 py-1">Python</span>
+                <span class="rounded-full border border-white/10 px-3 py-1">Flask</span>
+                <span class="rounded-full border border-white/10 px-3 py-1">Twilio</span>
+                <span class="rounded-full border border-white/10 px-3 py-1">OpenAI</span>
+            </div>
+        </div>
+
+        <!-- Featured Project card -->
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur">
+            <div class="rounded-xl border border-white/10 bg-black/60 p-6">
+                <p class="text-sm text-white/60">Featured Project</p>
+                <h3 class="mt-1 text-xl font-semibold">AI Phone Assistant</h3>
+                <p class="mt-2 text-white/70">
+                    Real phone calls. Answers FAQs. Captures leads. Books appointments. Built with GPT-4 + Twilio +
+                    Flask.
+                </p>
+                <div class="mt-4 flex gap-3">
+                    <a href="#projects" class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15">See
+                        details</a>
+                    <a href="#" class="rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10">Live
+                        demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sections (placeholders for now) -->
+    <section id="projects" class="mx-auto max-w-6xl px-4 py-20">
+        <h2 class="text-2xl font-semibold">Projects</h2>
+        <p class="mt-2 text-white/70">Stuff I’ve built or shipped recently.</p>
+
+        <!-- Grid -->
+        <div id="projectsGrid" class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- Cards will be injected by JS -->
+        </div>
+    </section>
+
+
+    <section id="skills" class="mx-auto max-w-6xl px-4 py-20">
+        <h2 class="text-2xl font-semibold">Skills</h2>
+        <p class="mt-2 text-white/70">Coming next…</p>
+    </section>
+
+    <section id="about" class="mx-auto max-w-6xl px-4 py-20">
+        <h2 class="text-2xl font-semibold">About</h2>
+        <p class="mt-2 text-white/70">Coming next…</p>
+    </section>
+
+    <section id="contact" class="mx-auto max-w-6xl px-4 py-20">
+        <h2 class="text-2xl font-semibold">Contact</h2>
+        <p class="mt-2 text-white/70">
+            Email: <a class="underline hover:text-white"
+                href="mailto:dostonbekmailme@gmail.com">dostonbekmailme@gmail.com</a>
+        </p>
+    </section>
+
+    <!-- Scripts -->
+    <script src="./src/main.js" defer></script>
+</body>
+
+</html>
