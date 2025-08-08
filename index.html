@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dostonbek Davlatov — Portfolio</title>
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind / SEO -->
     <link rel="canonical" href="https://dostonbek.me" />
     <link rel="stylesheet" href="/src/input.css">
     <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <!-- SEO -->
     <meta name="description"
         content="Portfolio of Dostonbek Davlatov — Software Developer, AI Enthusiast, and Product Builder. Showcasing AI projects, web apps, and more.">
     <meta name="keywords"
@@ -39,7 +37,7 @@
 </head>
 
 <body class="bg-black text-white min-h-screen">
-    <!-- Background Glow -->
+    <!-- Background glow -->
     <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
         <div class="absolute -top-32 -left-24 h-72 w-72 rounded-full bg-purple-600/30 blur-3xl"></div>
         <div class="absolute -bottom-24 -right-20 h-80 w-80 rounded-full bg-blue-500/30 blur-3xl"></div>
@@ -67,7 +65,7 @@
         </ul>
     </header>
 
-    <!-- Hero -->
+    <!-- Hero (Featured only here) -->
     <section id="home"
         class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
         <div>
@@ -98,8 +96,10 @@
                 <span class="rounded-full border border-white/10 px-3 py-1">OpenAI</span>
             </div>
         </div>
+
+        <!-- Featured card (not duplicated in Projects) -->
         <div class="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur">
-            <div class="relative rounded-lg border border-white/10 bg-white/5 p-4">
+            <div class="relative overflow-hidden rounded-lg border border-white/10 bg-white/5 p-4">
                 <span
                     class="absolute top-3 left-3 z-10 rounded-full bg-gradient-to-r from-purple-400 to-cyan-400 px-2 py-0.5 text-[9px] font-semibold text-black shadow-md">Featured</span>
                 <h3 class="mt-10 text-lg font-semibold">AI Voice Assistant</h3>
@@ -143,7 +143,8 @@
         <h2 class="text-2xl font-semibold">About</h2>
         <div class="mt-4 grid gap-8 md:grid-cols-3">
             <div class="md:col-span-2 space-y-4 text-white/80">
-                <p>I’m Dostonbek Davlatov — a software developer and AI enthusiast based in San Francisco.</p>
+                <p>I’m Dostonbek Davlatov — a software developer and AI enthusiast based in San Francisco. I like
+                    building practical things: tools people can click, call, or share.</p>
                 <p>Recent work includes an <strong>AI Phone Assistant</strong>, a clean <strong>Afsona</strong> web app,
                     and launching a YouTube Shorts brand (<strong>CirrusWire</strong>).</p>
             </div>
