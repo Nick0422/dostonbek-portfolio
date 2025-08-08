@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dostonbek Davlatov — Portfolio</title>
 
-    <!-- Tailwind CSS (compiled by Vite) -->
+    <!-- Tailwind CSS -->
     <link rel="canonical" href="https://dostonbek.me" />
     <link rel="stylesheet" href="/src/input.css">
     <link rel="icon" type="image/png" href="/favicon.png" />
 
-    <!-- Meta Tags for SEO -->
+    <!-- SEO -->
     <meta name="description"
         content="Portfolio of Dostonbek Davlatov — Software Developer, AI Enthusiast, and Product Builder. Showcasing AI projects, web apps, and more.">
     <meta name="keywords"
@@ -19,7 +19,7 @@
     <meta name="author" content="Dostonbek Davlatov">
     <meta name="theme-color" content="#000000">
 
-    <!-- Open Graph / Social Media Preview -->
+    <!-- Open Graph -->
     <meta property="og:title" content="Dostonbek Davlatov — Portfolio">
     <meta property="og:description"
         content="Showcasing AI projects, web apps, and my journey as a product builder and software developer.">
@@ -30,7 +30,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Dostonbek Davlatov">
 
-    <!-- Twitter Card -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Dostonbek Davlatov — Portfolio">
     <meta name="twitter:description"
@@ -39,7 +39,7 @@
 </head>
 
 <body class="bg-black text-white min-h-screen">
-    <!-- Background glow -->
+    <!-- Background Glow -->
     <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
         <div class="absolute -top-32 -left-24 h-72 w-72 rounded-full bg-purple-600/30 blur-3xl"></div>
         <div class="absolute -bottom-24 -right-20 h-80 w-80 rounded-full bg-blue-500/30 blur-3xl"></div>
@@ -82,18 +82,14 @@
             </p>
             <div class="mt-8 flex flex-wrap gap-3">
                 <a href="#projects"
-                    class="rounded-lg bg-gradient-to-r from-purple-500 to-cyan-500 px-5 py-2.5 font-medium text-black">
-                    View Projects
-                </a>
+                    class="rounded-lg bg-gradient-to-r from-purple-500 to-cyan-500 px-5 py-2.5 font-medium text-black">View
+                    Projects</a>
                 <a href="#contact"
-                    class="rounded-lg border border-white/15 px-5 py-2.5 font-medium text-white/90 hover:bg-white/10">
-                    Contact Me
-                </a>
+                    class="rounded-lg border border-white/15 px-5 py-2.5 font-medium text-white/90 hover:bg-white/10">Contact
+                    Me</a>
                 <a id="resumeLink" href="/Dostonbek_Davlatov_Resume.pdf"
                     class="rounded-lg border border-white/15 px-5 py-2.5 font-medium text-white/90 hover:bg-white/10"
-                    target="_blank" rel="noopener" download>
-                    Download Resume
-                </a>
+                    target="_blank" rel="noopener" download>Download Resume</a>
             </div>
             <div class="mt-6 flex flex-wrap gap-3 text-sm text-white/60">
                 <span class="rounded-full border border-white/10 px-3 py-1">Python</span>
@@ -105,13 +101,10 @@
         <div class="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur">
             <div class="relative rounded-lg border border-white/10 bg-white/5 p-4">
                 <span
-                    class="absolute top-3 left-3 z-10 rounded-full bg-purple-500/90 px-3 py-1 text-xs font-medium text-black">
-                    Featured
-                </span>
+                    class="absolute top-3 left-3 z-10 rounded-full bg-gradient-to-r from-purple-400 to-cyan-400 px-2 py-0.5 text-[9px] font-semibold text-black shadow-md">Featured</span>
                 <h3 class="mt-10 text-lg font-semibold">AI Voice Assistant</h3>
-                <p class="mt-2 text-white/70">
-                    Real phone calls, lead capture, appointment booking. Powered by GPT-4, Twilio, and Flask.
-                </p>
+                <p class="mt-2 text-white/70">Real phone calls, lead capture, appointment booking. Powered by GPT-4,
+                    Twilio, and Flask.</p>
                 <div class="mt-4 flex gap-3">
                     <a href="#projects" class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15">See
                         details</a>
@@ -122,102 +115,49 @@
         </div>
     </section>
 
-    <!-- Sections -->
+    <!-- Projects -->
     <section id="projects" class="mx-auto max-w-6xl px-4 py-20">
         <h2 class="text-2xl font-semibold">Projects</h2>
         <p class="mt-2 text-white/70">Stuff I’ve built or shipped recently.</p>
         <div id="projectsGrid" class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
     </section>
 
+    <!-- Skills -->
     <section id="skills" class="mx-auto max-w-6xl px-4 py-20">
         <h2 class="text-2xl font-semibold">Skills</h2>
         <p class="mt-2 text-white/70">Technologies and tools I use to build useful products.</p>
-
         <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            <!-- Core -->
             <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">JavaScript (ES6+)</div>
             <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">Python • Flask</div>
             <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">Node.js • Express</div>
             <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">REST APIs</div>
-
-            <!-- Frontend -->
             <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">HTML • Tailwind CSS</div>
             <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">Vite • Vercel</div>
-
-            <!-- AI / Voice -->
             <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">OpenAI API</div>
             <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">Twilio Voice</div>
-
-            <!-- Data / Ops -->
-            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">SQL (basics)</div>
-            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">Pandas (basics)</div>
-
-            <!-- Craft -->
-            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">Testing & Debugging</div>
-            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">Prompt Engineering</div>
         </div>
     </section>
 
-
+    <!-- About -->
     <section id="about" class="mx-auto max-w-6xl px-4 py-20">
         <h2 class="text-2xl font-semibold">About</h2>
         <div class="mt-4 grid gap-8 md:grid-cols-3">
             <div class="md:col-span-2 space-y-4 text-white/80">
-                <p>
-                    I’m Dostonbek Davlatov — a software developer and AI enthusiast based in San Francisco.
-                    I like building practical things: tools people can click, call, or share.
-                </p>
-                <p>
-                    Recent work includes an <strong>AI Phone Assistant</strong> (real Twilio calls + lead capture),
-                    a clean <strong>Afsona</strong> web app, and launching a YouTube Shorts brand for AI/tech news
-                    (<strong>CirrusWire</strong>). I care about clean UX, quick iteration, and shipping.
-                </p>
-                <p>
-                    I’m open to collaborating on AI tools, automation, and helpful web apps. If you’ve got a problem
-                    software can solve, let’s talk.
-                </p>
+                <p>I’m Dostonbek Davlatov — a software developer and AI enthusiast based in San Francisco.</p>
+                <p>Recent work includes an <strong>AI Phone Assistant</strong>, a clean <strong>Afsona</strong> web app,
+                    and launching a YouTube Shorts brand (<strong>CirrusWire</strong>).</p>
             </div>
-
-            <aside class="space-y-3">
-                <div class="rounded-lg border border-white/10 bg-white/5 p-4">
-                    <h3 class="font-semibold">Currently</h3>
-                    <ul class="mt-2 list-disc space-y-1 pl-5 text-white/70">
-                        <li>Building an AI voice assistant (Twilio + OpenAI)</li>
-                        <li>Polishing Afsona and portfolio content</li>
-                        <li>Publishing more Shorts on CirrusWire</li>
-                    </ul>
-                </div>
-                <div class="rounded-lg border border-white/10 bg-white/5 p-4">
-                    <h3 class="font-semibold">Interests</h3>
-                    <ul class="mt-2 list-disc space-y-1 pl-5 text-white/70">
-                        <li>Product design & fast prototyping</li>
-                        <li>Automation that saves real time</li>
-                        <li>Clear writing & friendly UX</li>
-                    </ul>
-                </div>
-            </aside>
         </div>
     </section>
 
-
+    <!-- Contact -->
     <section id="contact" class="mx-auto max-w-6xl px-4 py-20">
         <h2 class="text-2xl font-semibold">Contact</h2>
-        <p class="mt-2 text-white/70">
-            Best way to reach me: <a class="underline hover:text-white"
-                href="mailto:dostonbekmailme@gmail.com">dostonbekmailme@gmail.com</a>
-        </p>
+        <p class="mt-2 text-white/70">Best way to reach me: <a class="underline hover:text-white"
+                href="mailto:dostonbekmailme@gmail.com">dostonbekmailme@gmail.com</a></p>
+    </section>
 
-        <div class="mt-6 flex flex-wrap gap-3 text-white/80">
-            <a class="underline hover:text-white" href="https://github.com/Nick0422" target="_blank"
-                rel="noopener">GitHub</a>
-            <a class="underline hover:text-white" href="https://www.linkedin.com/in/dostonbek-davlatov-39597b278/"
-                target="_blank" rel="noopener">LinkedIn</a>
-            <a class="underline hover:text-white" href="https://youtube.com/@CirrusWire" target="_blank"
-                rel="noopener">YouTube</a>
-        </div>
-
-        <!-- JS (Vite will bundle this) -->
-        <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>
