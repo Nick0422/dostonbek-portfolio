@@ -129,24 +129,93 @@
 
     <section id="skills" class="mx-auto max-w-6xl px-4 py-20">
         <h2 class="text-2xl font-semibold">Skills</h2>
-        <p class="mt-2 text-white/70">Coming next…</p>
+        <p class="mt-2 text-white/70">Technologies and tools I use to build useful products.</p>
+
+        <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            <!-- Core -->
+            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">JavaScript (ES6+)</div>
+            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">Python • Flask</div>
+            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">Node.js • Express</div>
+            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">REST APIs</div>
+
+            <!-- Frontend -->
+            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">HTML • Tailwind CSS</div>
+            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">Vite • Vercel</div>
+
+            <!-- AI / Voice -->
+            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">OpenAI API</div>
+            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">Twilio Voice</div>
+
+            <!-- Data / Ops -->
+            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">SQL (basics)</div>
+            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">Pandas (basics)</div>
+
+            <!-- Craft -->
+            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">Testing & Debugging</div>
+            <div class="rounded border border-white/10 bg-white/5 px-4 py-3 text-sm">Prompt Engineering</div>
+        </div>
     </section>
+
 
     <section id="about" class="mx-auto max-w-6xl px-4 py-20">
         <h2 class="text-2xl font-semibold">About</h2>
-        <p class="mt-2 text-white/70">Coming next…</p>
+        <div class="mt-4 grid gap-8 md:grid-cols-3">
+            <div class="md:col-span-2 space-y-4 text-white/80">
+                <p>
+                    I’m Dostonbek Davlatov — a software developer and AI enthusiast based in San Francisco.
+                    I like building practical things: tools people can click, call, or share.
+                </p>
+                <p>
+                    Recent work includes an <strong>AI Phone Assistant</strong> (real Twilio calls + lead capture),
+                    a clean <strong>Afsona</strong> web app, and launching a YouTube Shorts brand for AI/tech news
+                    (<strong>CirrusWire</strong>). I care about clean UX, quick iteration, and shipping.
+                </p>
+                <p>
+                    I’m open to collaborating on AI tools, automation, and helpful web apps. If you’ve got a problem
+                    software can solve, let’s talk.
+                </p>
+            </div>
+
+            <aside class="space-y-3">
+                <div class="rounded-lg border border-white/10 bg-white/5 p-4">
+                    <h3 class="font-semibold">Currently</h3>
+                    <ul class="mt-2 list-disc space-y-1 pl-5 text-white/70">
+                        <li>Building an AI voice assistant (Twilio + OpenAI)</li>
+                        <li>Polishing Afsona and portfolio content</li>
+                        <li>Publishing more Shorts on CirrusWire</li>
+                    </ul>
+                </div>
+                <div class="rounded-lg border border-white/10 bg-white/5 p-4">
+                    <h3 class="font-semibold">Interests</h3>
+                    <ul class="mt-2 list-disc space-y-1 pl-5 text-white/70">
+                        <li>Product design & fast prototyping</li>
+                        <li>Automation that saves real time</li>
+                        <li>Clear writing & friendly UX</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
     </section>
+
 
     <section id="contact" class="mx-auto max-w-6xl px-4 py-20">
         <h2 class="text-2xl font-semibold">Contact</h2>
         <p class="mt-2 text-white/70">
-            Email: <a class="underline hover:text-white"
+            Best way to reach me: <a class="underline hover:text-white"
                 href="mailto:dostonbekmailme@gmail.com">dostonbekmailme@gmail.com</a>
         </p>
-    </section>
 
-    <!-- JS (Vite will bundle this) -->
-    <script type="module" src="/src/main.js"></script>
+        <div class="mt-6 flex flex-wrap gap-3 text-white/80">
+            <a class="underline hover:text-white" href="https://github.com/Nick0422" target="_blank"
+                rel="noopener">GitHub</a>
+            <a class="underline hover:text-white" href="https://www.linkedin.com/in/dostonbek-davlatov" target="_blank"
+                rel="noopener">LinkedIn</a>
+            <a class="underline hover:text-white" href="https://youtube.com/@CirrusWire" target="_blank"
+                rel="noopener">YouTube</a>
+        </div>
+
+        <!-- JS (Vite will bundle this) -->
+        <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>
