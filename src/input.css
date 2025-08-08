@@ -1,8 +1,10 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Tell Tailwind where to look for class names */
-@source "./index.html";
-/* Optional helper: not required, but handy for custom reveals */
-.reveal {
-  @apply translate-y-6 opacity-0 transition-all duration-700;
+/* Optional custom styles */
+@layer base {
+  body {
+    @apply font-sans;
+  }
 }

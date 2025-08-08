@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dostonbek Davlatov — Portfolio</title>
-    <link href="./dist/output.css" rel="stylesheet" />
+    <!-- Tailwind CSS (compiled by Vite) -->
+    <link rel="stylesheet" href="/src/input.css">
 </head>
 
 <body class="bg-black text-white min-h-screen">
@@ -29,7 +30,6 @@
                 <li><a href="#contact" class="rounded bg-white/10 px-3 py-1.5 hover:bg-white/15">Contact</a></li>
             </ul>
         </nav>
-        <!-- Mobile dropdown -->
         <ul id="menuMobile" class="mx-auto hidden max-w-6xl flex-col gap-3 px-4 pb-4 text-sm md:hidden">
             <li><a href="#projects" class="block rounded px-3 py-2 hover:bg-white/10">Projects</a></li>
             <li><a href="#skills" class="block rounded px-3 py-2 hover:bg-white/10">Skills</a></li>
@@ -43,17 +43,14 @@
         class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
         <div>
             <p class="mb-3 text-xs uppercase tracking-[0.2em] text-white/60">AI • Product • Startups</p>
-
             <h1 class="text-4xl font-bold leading-tight md:text-6xl">
                 Hi, I’m
                 <span id="nameTyper" class="text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text"
                     data-text="Dostonbek Davlatov"></span>
             </h1>
-
             <p id="tagline" class="mt-4 text-white/70 md:text-lg min-h-[3rem]"
                 data-text="Tech-savvy builder and problem solver. I design, ship, and support AI-powered tools. Future founder energy. Let’s build something useful.">
             </p>
-
             <div class="mt-8 flex flex-wrap gap-3">
                 <a href="#projects"
                     class="rounded-lg bg-gradient-to-r from-purple-500 to-cyan-500 px-5 py-2.5 font-medium text-black">
@@ -68,7 +65,6 @@
                     Download Resume
                 </a>
             </div>
-
             <div class="mt-6 flex flex-wrap gap-3 text-sm text-white/60">
                 <span class="rounded-full border border-white/10 px-3 py-1">Python</span>
                 <span class="rounded-full border border-white/10 px-3 py-1">Flask</span>
@@ -76,8 +72,6 @@
                 <span class="rounded-full border border-white/10 px-3 py-1">OpenAI</span>
             </div>
         </div>
-
-        <!-- Featured Project card -->
         <div class="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur">
             <div class="rounded-xl border border-white/10 bg-black/60 p-6">
                 <p class="text-sm text-white/60">Featured Project</p>
@@ -96,17 +90,12 @@
         </div>
     </section>
 
-    <!-- Sections (placeholders for now) -->
+    <!-- Sections -->
     <section id="projects" class="mx-auto max-w-6xl px-4 py-20">
         <h2 class="text-2xl font-semibold">Projects</h2>
         <p class="mt-2 text-white/70">Stuff I’ve built or shipped recently.</p>
-
-        <!-- Grid -->
-        <div id="projectsGrid" class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <!-- Cards will be injected by JS -->
-        </div>
+        <div id="projectsGrid" class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
     </section>
-
 
     <section id="skills" class="mx-auto max-w-6xl px-4 py-20">
         <h2 class="text-2xl font-semibold">Skills</h2>
@@ -126,8 +115,8 @@
         </p>
     </section>
 
-    <!-- Scripts -->
-    <script src="./src/main.js" defer></script>
+    <!-- JS (Vite will bundle this) -->
+    <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>
