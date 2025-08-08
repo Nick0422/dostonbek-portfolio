@@ -172,18 +172,28 @@
                 <div class="rounded-lg border border-white/10 bg-white/5 p-6">
                     <h3 class="font-semibold">Send a message</h3>
                     <!-- Replace YOUR_FORM_ID on Formspree (https://formspree.io/forms) -->
-                    <form action="https://formspree.io/f/xvgqvvjj" method="POST" class="mt-4 grid gap-3">
+                    <form id="contactForm" action="https://formspree.io/f/xvgqvvjj" method="POST"
+                        class="mt-4 grid gap-3">
                         <input name="name" placeholder="Your name" required
                             class="w-full rounded border border-white/10 bg-white/5 px-3 py-2 outline-none placeholder:text-white/40" />
                         <input type="email" name="email" placeholder="Your email" required
                             class="w-full rounded border border-white/10 bg-white/5 px-3 py-2 outline-none placeholder:text-white/40" />
                         <textarea name="message" placeholder="Your message" rows="4" required
                             class="w-full rounded border border-white/10 bg-white/5 px-3 py-2 outline-none placeholder:text-white/40"></textarea>
-                        <button type="submit"
+
+                        <!-- Optional extras -->
+                        <input type="hidden" name="_subject" value="New message from dostonbek.me">
+                        <input type="text" name="_honeypot" tabindex="-1" autocomplete="off" class="hidden" />
+
+                        <button id="contactSubmit" type="submit"
                             class="mt-1 w-fit rounded bg-gradient-to-r from-purple-500 to-cyan-500 px-4 py-2 font-medium text-black">
                             Send
                         </button>
+
+                        <!-- Status message -->
+                        <p id="formStatus" class="text-sm text-white/60" aria-live="polite"></p>
                     </form>
+
                     <p class="mt-2 text-xs text-white/50">
                         Prefer email? Write me at <a class="underline"
                             href="mailto:dostonbekmailme@gmail.com">dostonbekmailme@gmail.com</a>.

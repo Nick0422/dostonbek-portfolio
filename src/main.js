@@ -184,3 +184,41 @@ window.addEventListener("DOMContentLoaded", () => {
     renderProjects(grid, projects);
     requestAnimationFrame(() => revealOnScroll());
 });
+// ===== Contact form (Formspree AJAX) =====
+window.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    const statusEl = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('contactSubmit');
+
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        statusEl.textContent = '';
+        submitBtn.disabled = true;
+
+        try {
+            const res = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { Accept: 'application/json' }
+            });
+
+            if (res.ok) {
+                form.reset();
+                statusEl.className = 'text-sm text-green-400';
+                statusEl.textContent = 'Thanks! Your message was sent.';
+            } else {
+                const data = await res.json().catch(() => ({}));
+                const msg = data.errors?.map((e) => e.message).join(', ') || 'Something went wrong. Please try again.';
+                statusEl.className = 'text-sm text-red-400';
+                statusEl.textContent = `Message failed: ${msg}`;
+            }
+        } catch (err) {
+            statusEl.className = 'text-sm text-red-400';
+            statusEl.textContent = 'Network error. Please try again.';
+        } finally {
+            submitBtn.disabled = false;
+        }
+    });
+});
