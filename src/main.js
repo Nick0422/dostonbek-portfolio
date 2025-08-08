@@ -27,20 +27,18 @@ window.addEventListener('DOMContentLoaded', () => {
 // ===== Projects data =====
 const projects = [
     {
-        // FEATURED
-        title: "AI Phone Assistant (In Progress)",
-        summary:
-            "Answers real phone calls, handles FAQs, captures leads, and books appointments automatically. Built with Flask, Twilio Voice, and OpenAI. Preparing public repo and live demo.",
-        tags: ["Python", "Flask", "Twilio", "OpenAI", "Vercel"],
-        links: { details: "#projects" },
-        featured: true
+        title: "AI Voice Assistant",
+        status: "Featured",
+        summary: "Real phone calls + natural voice...",
+        tags: ["GPT-4", "Twilio", "Flask", "Python"],
+        links: {}
     },
     {
         title: "Afsona",
-        summary:
-            "A fully built and deployed project delivering a smooth user experience and robust functionality. Live and ready to use.",
-        tags: ["JavaScript", "Tailwind CSS", "Vite", "Vercel"],
-        links: { demo: "https://afsona.vercel.app", repo: "https://github.com/Nick0422/afsona" }
+        status: "In Progress",
+        summary: "Multilingual storytelling web app...",
+        tags: ["React", "Node.js", "MongoDB"],
+        links: {}
     },
     {
         title: "Car Rental Platform (In Progress)",
@@ -72,21 +70,21 @@ function renderProjects(gridEl, items) {
             const featured = !!p.featured;
 
             return `
-  <article class="project-card reveal relative rounded-2xl border border-white/10 ${featured ? 'ring-1 ring-purple-400/40 shadow-2xl' : ''} bg-white/5 p-5 transition-all duration-700 will-change-transform hover:border-white/20 hover:bg-white/10">
-    ${featured ? `<span class="absolute -top-3 left-3 rounded-full bg-gradient-to-r from-purple-400 to-cyan-400 px-2 py-0.5 text-xs font-semibold text-black">Featured</span>` : ''}
-    ${inProgress ? `<span class="absolute top-3 right-3 rounded-full bg-yellow-400/90 px-2 py-0.5 text-xs font-semibold text-black">In Progress</span>` : ""}
+  <article class="relative project-card reveal rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl transition-all duration-700 will-change-transform hover:border-white/20 hover:bg-white/10">
+    ${p.status ? `<span class="absolute top-3 left-3 z-10 rounded-full bg-purple-500/90 px-3 py-1 text-xs font-medium text-black">${p.status}</span>` : ""}
     <div class="flex items-start justify-between gap-3">
-      <h3 class="text-lg font-semibold">${cleanTitle}</h3>
+      <h3 class="mt-10 text-lg font-semibold">${p.title}</h3>
     </div>
     <p class="mt-2 text-sm text-white/70">${p.summary}</p>
     <div class="mt-4 flex flex-wrap gap-2">${tags}</div>
     <div class="mt-5 flex flex-wrap gap-2">
-      ${p.links?.demo ? `<a href="${p.links.demo}" target="_blank" rel="noopener" class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15">Live demo</a>` : ""}
-      ${p.links?.repo ? `<a href="${p.links.repo}" target="_blank" rel="noopener" class="rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10">Source</a>` : ""}
-      ${(!p.links?.demo && !p.links?.repo) ? `<span class="rounded-md px-3 py-1.5 text-sm text-white/50">Details coming soon</span>` : ""}
+      ${p.links.demo ? `<a href="${p.links.demo}" class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15">Live demo</a>` : ""}
+      ${p.links.repo ? `<a href="${p.links.repo}" class="rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10">Source</a>` : ""}
+      ${p.links.details ? `<a href="${p.links.details}" class="rounded-md px-3 py-1.5 text-sm text-white/80 hover:text-white">Details</a>` : ""}
     </div>
   </article>
 `;
+
         })
         .join("");
 }
