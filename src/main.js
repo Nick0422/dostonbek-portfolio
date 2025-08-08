@@ -1,3 +1,5 @@
+const { status } = require("express/lib/response");
+
 // ===== Mobile menu toggle =====
 const btn = document.getElementById('menuBtn');
 const menuMobile = document.getElementById('menuMobile');
@@ -42,6 +44,7 @@ const projects = [
     },
     {
         title: "Car Rental Platform (In Progress)",
+        status: "In Progress",
         summary:
             "Full-stack app for listing and booking cars with responsive UI, categories, image uploads, and clean routing. Backend & DB integration in progress.",
         tags: ["Node", "Express", "REST API", "Tailwind CSS", "CRUD"],
@@ -49,6 +52,7 @@ const projects = [
     },
     {
         title: "CirrusWire — AI & Tech News Shorts (In Progress)",
+        status: "In Progress",
         summary:
             "YouTube Shorts brand for daily AI and tech updates. Branding, scripting, and 4+ videos done; building automation workflow to scale.",
         tags: ["Branding", "Scripting", "Video Production"],
