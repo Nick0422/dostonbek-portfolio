@@ -74,20 +74,24 @@ function renderProjects(gridEl, items) {
             const featured = !!p.featured;
 
             return `
-  <article class="relative project-card reveal rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl transition-all duration-700 will-change-transform hover:border-white/20 hover:bg-white/10">
-    ${p.status ? `<span class="absolute top-3 left-3 z-10 rounded-full bg-purple-500/90 px-3 py-1 text-xs font-medium text-black">${p.status}</span>` : ""}
+  <article class="relative project-card reveal rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl overflow-hidden transition-all duration-700 will-change-transform hover:border-white/20 hover:bg-white/10">
+    ${featured ? `<span class="absolute top-2 left-2 md:top-3 md:left-3 z-10 rounded-full bg-gradient-to-r from-purple-400 to-cyan-400 px-2.5 py-0.5 text-[10px] md:text-xs font-semibold text-black">Featured</span>` : ''}
+    ${inProgress ? `<span class="absolute top-2 right-2 md:top-3 md:right-3 z-10 rounded-full bg-yellow-400/90 px-2.5 py-0.5 text-[10px] md:text-xs font-semibold text-black">In Progress</span>` : ""}
+
     <div class="flex items-start justify-between gap-3">
-      <h3 class="mt-10 text-lg font-semibold">${p.title}</h3>
+      <h3 class="mt-8 md:mt-10 text-lg font-semibold">${cleanTitle}</h3>
     </div>
+
     <p class="mt-2 text-sm text-white/70">${p.summary}</p>
     <div class="mt-4 flex flex-wrap gap-2">${tags}</div>
     <div class="mt-5 flex flex-wrap gap-2">
-      ${p.links.demo ? `<a href="${p.links.demo}" class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15">Live demo</a>` : ""}
-      ${p.links.repo ? `<a href="${p.links.repo}" class="rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10">Source</a>` : ""}
-      ${p.links.details ? `<a href="${p.links.details}" class="rounded-md px-3 py-1.5 text-sm text-white/80 hover:text-white">Details</a>` : ""}
+      ${p.links?.demo ? `<a href="${p.links.demo}" target="_blank" rel="noopener" class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15">Live demo</a>` : ""}
+      ${p.links?.repo ? `<a href="${p.links.repo}" target="_blank" rel="noopener" class="rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10">Source</a>` : ""}
+      ${(!p.links?.demo && !p.links?.repo) ? `<span class="rounded-md px-3 py-1.5 text-sm text-white/50">Details coming soon</span>` : ""}
     </div>
   </article>
 `;
+
 
         })
         .join("");
