@@ -137,4 +137,50 @@ function renderProjects(grid, items) {
 
         // Layout-driven header row prevents overlap on any screen
         return `
-      <article class="project-card reveal rounded-2xl border border-white/10 bg-white
+      <article class="project-card reveal rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl transition-all duration-700 hover:border-white/20 hover:bg-white/10">
+        <div class="mb-3 flex items-center justify-between">
+          <div class="flex items-center gap-2">${badge}</div>
+        </div>
+
+        <div class="mb-4">
+          ${img}${imgFallback}
+        </div>
+
+        <h3 class="text-lg font-semibold">${p.title}</h3>
+        <p class="mt-2 text-sm text-white/70">${p.summary}</p>
+
+        <div class="mt-4 flex flex-wrap gap-2">${techTags}</div>
+
+        <div class="mt-5 flex flex-wrap gap-2">
+          ${buttons || `<span class="rounded-md px-3 py-1.5 text-sm text-white/50">Details coming soon</span>`}
+        </div>
+      </article>
+    `;
+    }).join('');
+}
+
+// ===== Reveal on scroll =====
+function revealOnScroll(selector = ".project-card", options = { threshold: 0.15 }) {
+    const items = document.querySelectorAll(selector);
+    if (!("IntersectionObserver" in window) || !items.length) {
+        items.forEach(el => { el.style.opacity = 1; el.style.transform = "none"; });
+        return;
+    }
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("!opacity-100", "!translate-y-0");
+                obs.unobserve(entry.target);
+            }
+        });
+    }, options);
+    items.forEach(el => obs.observe(el));
+}
+
+// ===== Init =====
+window.addEventListener("DOMContentLoaded", () => {
+    renderFeatured();
+    const grid = document.getElementById("projectsGrid");
+    renderProjects(grid, projects);
+    requestAnimationFrame(() => revealOnScroll());
+});
