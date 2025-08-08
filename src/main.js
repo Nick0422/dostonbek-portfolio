@@ -18,11 +18,8 @@ function typewriter(el, text, speed = 18, delay = 400) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    console.log('main.js loaded'); // Debug
-
     const nameEl = document.getElementById('nameTyper');
     const taglineEl = document.getElementById('tagline');
-
     typewriter(nameEl, nameEl?.dataset.text, 16, 150);
     typewriter(taglineEl, taglineEl?.dataset.text, 18, 400);
 });
@@ -30,33 +27,38 @@ window.addEventListener('DOMContentLoaded', () => {
 // ===== Projects data =====
 const projects = [
     {
-        title: "AI Phone Assistant",
+        // FEATURED
+        title: "AI Phone Assistant (In Progress)",
         summary:
-            "Real phone calls + natural voice. Answers FAQs, captures leads, and books appointments. Built with GPT-4, Twilio, Flask.",
-        tags: ["GPT-4", "Twilio", "Flask", "Python"],
-        links: {
-            demo: "#",          // Replace with your demo URL
-            repo: "#",          // Replace with your GitHub repo
-            details: "#projects"
-        }
+            "Answers real phone calls, handles FAQs, captures leads, and books appointments automatically. Built with Flask, Twilio Voice, and OpenAI. Preparing public repo and live demo.",
+        tags: ["Python", "Flask", "Twilio", "OpenAI", "Vercel"],
+        links: { details: "#projects" },
+        featured: true
     },
     {
-        title: "Sales Insights Dashboard (Concept)",
+        title: "Afsona",
         summary:
-            "Lightweight dashboard that aggregates store KPIs, daily goals, and churn risk from CSV exports. Built to learn charts + ETL.",
-        tags: ["Python", "Pandas", "Chart.js"],
-        links: { demo: "#", repo: "#", details: "#projects" }
+            "A fully built and deployed project delivering a smooth user experience and robust functionality. Live and ready to use.",
+        tags: ["JavaScript", "Tailwind CSS", "Vite", "Vercel"],
+        links: { demo: "https://afsona.vercel.app", repo: "https://github.com/Nick0422/afsona" }
     },
     {
-        title: "AI FAQ Chatbot (Prototype)",
+        title: "Car Rental Platform (In Progress)",
         summary:
-            "Embeddable website chatbot that answers common questions from a docs page or a Google Doc. Prompting + retrieval basics.",
-        tags: ["JS", "OpenAI API", "RAG-lite"],
-        links: { demo: "#", repo: "#", details: "#projects" }
+            "Full-stack app for listing and booking cars with responsive UI, categories, image uploads, and clean routing. Backend & DB integration in progress.",
+        tags: ["Node", "Express", "REST API", "Tailwind CSS", "CRUD"],
+        links: { details: "#projects" }
+    },
+    {
+        title: "CirrusWire — AI & Tech News Shorts (In Progress)",
+        summary:
+            "YouTube Shorts brand for daily AI and tech updates. Branding, scripting, and 4+ videos done; building automation workflow to scale.",
+        tags: ["Branding", "Scripting", "Video Production"],
+        links: { details: "#projects" }
     }
 ];
 
-// ===== Render helper =====
+// ===== Render helper (Featured + In Progress badge) =====
 function renderProjects(gridEl, items) {
     if (!gridEl) return;
     gridEl.innerHTML = items
@@ -65,20 +67,26 @@ function renderProjects(gridEl, items) {
                 .map(t => `<span class="rounded-full border border-white/10 px-2 py-0.5 text-xs text-white/70">${t}</span>`)
                 .join("");
 
+            const inProgress = p.title.includes("(In Progress)");
+            const cleanTitle = p.title.replace(" (In Progress)", "");
+            const featured = !!p.featured;
+
             return `
-        <article class="project-card reveal rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl transition-all duration-700 will-change-transform hover:border-white/20 hover:bg-white/10">
-          <div class="flex items-start justify-between gap-3">
-            <h3 class="text-lg font-semibold">${p.title}</h3>
-          </div>
-          <p class="mt-2 text-sm text-white/70">${p.summary}</p>
-          <div class="mt-4 flex flex-wrap gap-2">${tags}</div>
-          <div class="mt-5 flex flex-wrap gap-2">
-            ${p.links.demo ? `<a href="${p.links.demo}" class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15">Live demo</a>` : ""}
-            ${p.links.repo ? `<a href="${p.links.repo}" class="rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10">Source</a>` : ""}
-            ${p.links.details ? `<a href="${p.links.details}" class="rounded-md px-3 py-1.5 text-sm text-white/80 hover:text-white">Details</a>` : ""}
-          </div>
-        </article>
-      `;
+  <article class="project-card reveal relative rounded-2xl border border-white/10 ${featured ? 'ring-1 ring-purple-400/40 shadow-2xl' : ''} bg-white/5 p-5 transition-all duration-700 will-change-transform hover:border-white/20 hover:bg-white/10">
+    ${featured ? `<span class="absolute -top-3 left-3 rounded-full bg-gradient-to-r from-purple-400 to-cyan-400 px-2 py-0.5 text-xs font-semibold text-black">Featured</span>` : ''}
+    ${inProgress ? `<span class="absolute top-3 right-3 rounded-full bg-yellow-400/90 px-2 py-0.5 text-xs font-semibold text-black">In Progress</span>` : ""}
+    <div class="flex items-start justify-between gap-3">
+      <h3 class="text-lg font-semibold">${cleanTitle}</h3>
+    </div>
+    <p class="mt-2 text-sm text-white/70">${p.summary}</p>
+    <div class="mt-4 flex flex-wrap gap-2">${tags}</div>
+    <div class="mt-5 flex flex-wrap gap-2">
+      ${p.links?.demo ? `<a href="${p.links.demo}" target="_blank" rel="noopener" class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15">Live demo</a>` : ""}
+      ${p.links?.repo ? `<a href="${p.links.repo}" target="_blank" rel="noopener" class="rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10">Source</a>` : ""}
+      ${(!p.links?.demo && !p.links?.repo) ? `<span class="rounded-md px-3 py-1.5 text-sm text-white/50">Details coming soon</span>` : ""}
+    </div>
+  </article>
+`;
         })
         .join("");
 }
