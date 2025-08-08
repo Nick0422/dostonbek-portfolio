@@ -24,12 +24,13 @@ window.addEventListener('DOMContentLoaded', () => {
     typewriter(taglineEl, taglineEl?.dataset.text, 400);
 });
 
-// ===== Projects (4 unique; no AI Voice Assistant here) =====
+// ===== Projects (4 unique; hero features AI Voice Assistant separately) =====
 const projects = [
     {
         title: "Afsona",
         status: "Live",
-        summary: "A fully built and deployed project delivering a smooth user experience and robust functionality.",
+        summary:
+            "A fully built and deployed project delivering a smooth user experience and robust functionality.",
         img: "/images/afsona.jpg",
         tags: ["JavaScript", "Tailwind CSS", "Vite", "Vercel"],
         links: { demo: "https://afsona.vercel.app", repo: "https://github.com/Nick0422/afsona" }
@@ -37,7 +38,8 @@ const projects = [
     {
         title: "Car Rental Platform",
         status: "In Progress",
-        summary: "Full-stack app for listing and booking cars. Responsive UI, categories, image uploads, and clean routing.",
+        summary:
+            "Full-stack app for listing and booking cars. Responsive UI, categories, image uploads, and clean routing.",
         img: "/images/car-rental.jpg",
         tags: ["Node", "Express", "REST API", "Tailwind CSS", "CRUD"],
         links: {}
@@ -45,7 +47,8 @@ const projects = [
     {
         title: "CirrusWire — AI & Tech News Shorts",
         status: "In Progress",
-        summary: "YouTube Shorts brand delivering AI/tech updates. Branding, scripting, and 4+ videos; building automation to scale.",
+        summary:
+            "YouTube Shorts brand delivering AI/tech updates. Branding, scripting, and 4+ videos; building automation to scale.",
         img: "/images/cirruswire.jpg",
         tags: ["Branding", "Scripting", "Video"],
         links: { demo: "https://youtube.com/@CirrusWire" }
@@ -53,7 +56,8 @@ const projects = [
     {
         title: "This Portfolio",
         status: "Live",
-        summary: "The site you’re viewing. Built with Vite + Tailwind, deployed on Vercel, with clean SEO and DX.",
+        summary:
+            "The site you’re viewing. Built with Vite + Tailwind, deployed on Vercel, with clean SEO and DX.",
         img: "/images/portfolio.jpg",
         tags: ["Tailwind", "Vite", "Vercel"],
         links: { repo: "https://github.com/Nick0422/dostonbek-portfolio" }
@@ -63,19 +67,13 @@ const projects = [
 // ===== Map status -> badge styles =====
 function statusBadge(status) {
     const s = (status || '').toLowerCase();
-    if (s.includes('live')) {
-        return 'bg-green-600 text-white';
-    }
-    if (s.includes('progress')) {
-        return 'bg-yellow-700 text-white';
-    }
-    if (s.includes('featured')) {
-        return 'bg-gradient-to-r from-purple-400 to-cyan-400 text-black';
-    }
+    if (s.includes('live')) return 'bg-green-600 text-white';
+    if (s.includes('progress')) return 'bg-yellow-700 text-white';
+    if (s.includes('featured')) return 'bg-gradient-to-r from-purple-400 to-cyan-400 text-black';
     return 'bg-white/20 text-white';
 }
 
-// ===== Render projects =====
+// ===== Render projects (badge lifted + title padding to avoid overlap) =====
 function renderProjects(grid, items) {
     if (!grid) return;
     grid.innerHTML = items
@@ -85,27 +83,29 @@ function renderProjects(grid, items) {
                 .map((t) => `<span class="rounded-full border border-white/10 px-2 py-0.5 text-xs text-white/70">${t}</span>`)
                 .join('');
 
-            // Buttons
             const buttons = [
                 p.links?.demo ? `<a href="${p.links.demo}" target="_blank" rel="noopener" class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15">Live demo</a>` : '',
                 p.links?.repo ? `<a href="${p.links.repo}" target="_blank" rel="noopener" class="rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10">Source</a>` : ''
             ].filter(Boolean).join('');
 
-            // Fallback image handler
             const imgTag = p.img
                 ? `<img src="${p.img}" alt="${p.title}" class="h-40 w-full rounded-lg object-cover" onerror="this.style.display='none'; this.nextElementSibling?.classList.remove('hidden');">`
                 : '';
 
             return `
       <article class="relative project-card reveal rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl overflow-hidden transition-all duration-700 will-change-transform hover:border-white/20 hover:bg-white/10">
-        <span class="absolute top-2 left-2 z-10 rounded-full px-2 py-0.5 text-[10px] font-semibold shadow-md ${badgeClass}">${p.status || ''}</span>
+        <!-- Lifted badge so it doesn’t collide with title -->
+        <span class="pointer-events-none absolute top-2 left-2 z-10 rounded-full px-2 py-0.5 text-[10px] font-semibold shadow-md ${badgeClass} translate-y-[-6px]">
+          ${p.status || ''}
+        </span>
 
         <div class="mb-4">
           ${imgTag}
           <div class="hidden h-40 w-full rounded-lg bg-gradient-to-br from-white/10 to-white/5"></div>
         </div>
 
-        <h3 class="mt-1 text-lg font-semibold">${p.title}</h3>
+        <!-- Extra padding on title to avoid badge area -->
+        <h3 class="pt-2 text-lg font-semibold">${p.title}</h3>
         <p class="mt-2 text-sm text-white/70">${p.summary}</p>
 
         <div class="mt-4 flex flex-wrap gap-2">${techTags}</div>
@@ -146,3 +146,4 @@ window.addEventListener("DOMContentLoaded", () => {
     renderProjects(grid, projects);
     requestAnimationFrame(() => revealOnScroll());
 });
+
