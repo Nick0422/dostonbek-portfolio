@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
     typewriter(document.getElementById('tagline'), document.getElementById('tagline')?.dataset.text, 400);
 });
 
-// ===== Projects data (Featured will be auto-used in hero and excluded from grid) =====
+// ===== Projects data (Featured auto-injected into hero, excluded from grid) =====
 const projects = [
     {
         title: "AI Voice Assistant",
@@ -66,7 +66,7 @@ const projects = [
     }
 ];
 
-// ===== Status -> badge classes (flow layout, no absolute) =====
+// ===== Status -> badge classes (layout-driven, no absolute positioning) =====
 function badgeClasses(status) {
     const s = (status || '').toLowerCase();
     if (s.includes('featured')) return 'bg-gradient-to-r from-purple-400 to-cyan-400 text-black';
@@ -96,7 +96,6 @@ function renderFeatured() {
     <div class="rounded-lg border border-white/10 bg-white/5 p-4">
       <div class="mb-3 flex items-center justify-between">
         <div class="flex items-center gap-2">${badge}</div>
-        <!-- right side empty (room for future links) -->
       </div>
 
       <div class="mb-4">
@@ -136,53 +135,6 @@ function renderProjects(grid, items) {
             p.links?.repo ? `<a href="${p.links.repo}" target="_blank" rel="noopener" class="rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10">Source</a>` : ''
         ].filter(Boolean).join('');
 
-        // NOTE: no absolute positioning anywhere — badges live in their own row
+        // Layout-driven header row prevents overlap on any screen
         return `
-      <article class="project-card reveal rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl transition-all duration-700 hover:border-white/20 hover:bg-white/10">
-        <div class="mb-3 flex items-center justify-between">
-          <div class="flex items-center gap-2">${badge}</div>
-          <!-- keep right empty for future badges or links -->
-        </div>
-
-        <div class="mb-4">
-          ${img}${imgFallback}
-        </div>
-
-        <h3 class="text-lg font-semibold">${p.title}</h3>
-        <p class="mt-2 text-sm text-white/70">${p.summary}</p>
-
-        <div class="mt-4 flex flex-wrap gap-2">${techTags}</div>
-
-        <div class="mt-5 flex flex-wrap gap-2">
-          ${buttons || `<span class="rounded-md px-3 py-1.5 text-sm text-white/50">Details coming soon</span>`}
-        </div>
-      </article>
-    `;
-    }).join('');
-}
-
-// ===== Reveal on scroll =====
-function revealOnScroll(selector = ".project-card", options = { threshold: 0.15 }) {
-    const items = document.querySelectorAll(selector);
-    if (!("IntersectionObserver" in window) || !items.length) {
-        items.forEach(el => { el.style.opacity = 1; el.style.transform = "none"; });
-        return;
-    }
-    const obs = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("!opacity-100", "!translate-y-0");
-                obs.unobserve(entry.target);
-            }
-        });
-    }, options);
-    items.forEach(el => obs.observe(el));
-}
-
-// ===== Init =====
-window.addEventListener("DOMContentLoaded", () => {
-    renderFeatured();
-    const grid = document.getElementById("projectsGrid");
-    renderProjects(grid, projects);
-    requestAnimationFrame(() => revealOnScroll());
-});
+      <article class="project-card reveal rounded-2xl border border-white/10 bg-white
