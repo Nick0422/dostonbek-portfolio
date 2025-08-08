@@ -65,7 +65,7 @@
         </ul>
     </header>
 
-    <!-- Hero (Featured only here) -->
+    <!-- Hero -->
     <section id="home"
         class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
         <div>
@@ -97,22 +97,8 @@
             </div>
         </div>
 
-        <!-- Featured card (not duplicated in Projects) -->
-        <div class="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur">
-            <div class="relative overflow-hidden rounded-lg border border-white/10 bg-white/5 p-4">
-                <span
-                    class="absolute top-3 left-3 z-10 rounded-full bg-gradient-to-r from-purple-400 to-cyan-400 px-2 py-0.5 text-[9px] font-semibold text-black shadow-md">Featured</span>
-                <h3 class="mt-10 text-lg font-semibold">AI Voice Assistant</h3>
-                <p class="mt-2 text-white/70">Real phone calls, lead capture, appointment booking. Powered by GPT-4,
-                    Twilio, and Flask.</p>
-                <div class="mt-4 flex gap-3">
-                    <a href="#projects" class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15">See
-                        details</a>
-                    <a href="#" class="rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10">Live
-                        demo</a>
-                </div>
-            </div>
-        </div>
+        <!-- Dynamic Featured card gets injected here -->
+        <div id="featuredCard" class="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur"></div>
     </section>
 
     <!-- Projects -->
