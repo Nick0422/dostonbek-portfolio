@@ -115,7 +115,8 @@ function renderProjects(grid, items) {
     if (!grid) return;
 
     // Exclude the one marked Featured. Since we only have 3 total, this will render 2.
-    const list = items.filter(p => !(p.status || '').toLowerCase().includes('featured'));
+    const list = items.slice(0, 3); // include featured too, show all 3
+
     grid.innerHTML = list.map(p => {
         const badge = `<span class="rounded-full px-2 py-0.5 text-[10px] font-semibold ${badgeClasses(p.status)}">${p.status || ''}</span>`;
         const techTags = (p.tags || [])
