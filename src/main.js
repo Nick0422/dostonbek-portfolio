@@ -49,7 +49,7 @@ const projects = [
         status: "Live",
         summary:
             "A fully built and deployed project delivering a smooth user experience and robust functionality.",
-        img: "/images/afsona.jpg",
+        img: "/images/afsona.png",
         tags: ["JavaScript", "Tailwind CSS", "Vite", "Vercel"],
         links: { demo: "https://afsona.vercel.app", repo: "https://github.com/Nick0422/afsona" }
     },
