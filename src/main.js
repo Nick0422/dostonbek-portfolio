@@ -1,3 +1,6 @@
+// ===== Config =====
+const SHOW_FEATURED_IN_GRID = true; // set false to hide the Featured card from the grid
+
 // ===== Mobile menu toggle =====
 document.getElementById('menuBtn')?.addEventListener('click', () =>
     document.getElementById('menuMobile')?.classList.toggle('hidden')
@@ -30,8 +33,7 @@ window.addEventListener('DOMContentLoaded', () => {
     );
 });
 
-// ===== Projects data (Featured auto-injected into hero, excluded from grid) =====
-// Kept: 3 total projects. CirrusWire removed.
+// ===== Projects data (3 total; CirrusWire removed) =====
 const projects = [
     {
         title: "AI Voice Assistant",
@@ -62,13 +64,23 @@ const projects = [
     }
 ];
 
-// ===== Status -> badge classes (layout-driven, no absolute positioning) =====
+// ===== Status -> badge classes =====
 function badgeClasses(status) {
     const s = (status || '').toLowerCase();
     if (s.includes('featured')) return 'bg-gradient-to-r from-purple-400 to-cyan-400 text-black';
     if (s.includes('live')) return 'bg-green-600 text-white';
     if (s.includes('progress')) return 'bg-yellow-700 text-white';
     return 'bg-white/20 text-white';
+}
+
+// Small dot accent next to status text
+function statusDot(status) {
+    const s = (status || '').toLowerCase();
+    const base = 'inline-block h-2 w-2 rounded-full';
+    if (s.includes('featured')) return `<span class="${base} bg-cyan-300"></span>`;
+    if (s.includes('live')) return `<span class="${base} bg-green-300"></span>`;
+    if (s.includes('progress')) return `<span class="${base} bg-yellow-300"></span>`;
+    return `<span class="${base} bg-white/40"></span>`;
 }
 
 // ===== Featured (dynamic) =====
@@ -78,18 +90,24 @@ function renderFeatured() {
 
     const featured = projects.find(p => (p.status || '').toLowerCase().includes('featured'));
     if (!featured) {
-        box.innerHTML = `<div class="rounded-lg border border-white/10 bg-white/5 p-4 text-white/60">No featured project yet.</div>`;
+        box.innerHTML = `<div class="rounded-2xl border border-white/10 bg-white/5 p-4 text-white/60">No featured project yet.</div>`;
         return;
     }
 
-    const badge = `<span class="rounded-full px-2 py-0.5 text-[10px] font-semibold ${badgeClasses(featured.status)}">${featured.status}</span>`;
+    const badge = `
+    <span class="flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold ${badgeClasses(featured.status)}">
+      ${statusDot(featured.status)} ${featured.status}
+    </span>`;
+
     const img = featured.img
-        ? `<img src="${featured.img}" alt="${featured.title}" class="h-40 w-full rounded-lg object-cover" onerror="this.style.display='none'; this.nextElementSibling?.classList.remove('hidden');">`
+        ? `<img src="${featured.img}" alt="${featured.title}" loading="lazy"
+         class="h-44 w-full rounded-xl object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+         onerror="this.style.display='none'; this.nextElementSibling?.classList.remove('hidden');">`
         : '';
-    const imgFallback = `<div class="hidden h-40 w-full rounded-lg bg-gradient-to-br from-white/10 to-white/5"></div>`;
+    const imgFallback = `<div class="hidden h-44 w-full rounded-xl bg-gradient-to-br from-white/10 to-white/5"></div>`;
 
     box.innerHTML = `
-    <div class="rounded-lg border border-white/10 bg-white/5 p-4">
+    <div class="group rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl transition-all duration-500 hover:border-white/20 hover:bg-white/10">
       <div class="mb-3 flex items-center justify-between">
         <div class="flex items-center gap-2">${badge}</div>
       </div>
@@ -98,65 +116,89 @@ function renderFeatured() {
         ${img}${imgFallback}
       </div>
 
-      <h3 class="text-lg font-semibold">${featured.title}</h3>
+      <h3 class="text-lg font-semibold tracking-tight">${featured.title}</h3>
       <p class="mt-2 text-white/70">${featured.summary}</p>
 
       <div class="mt-4 flex flex-wrap gap-2">
-        ${featured.links?.demo ? `<a href="${featured.links.demo}" target="_blank" rel="noopener" class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15">Live demo</a>` : ''}
-        ${featured.links?.repo ? `<a href="${featured.links.repo}" target="_blank" rel="noopener" class="rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10">Source</a>` : ''}
-        ${(!featured.links?.demo && !featured.links?.repo) ? `<a href="#projects" class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15">See details</a>` : ''}
+        ${featured.links?.demo ? `<a href="${featured.links.demo}" target="_blank" rel="noopener"
+            class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30">Live demo</a>` : ''}
+        ${featured.links?.repo ? `<a href="${featured.links.repo}" target="_blank" rel="noopener"
+            class="rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30">Source</a>` : ''}
+        ${(!featured.links?.demo && !featured.links?.repo) ? `<a href="#projects"
+            class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30">See details</a>` : ''}
       </div>
     </div>
   `;
 }
 
-// ===== Projects (exclude featured) =====
+// ===== Projects (grid) =====
+function buildProjectCard(p) {
+    const badge = `
+    <span class="flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold ${badgeClasses(p.status)}">
+      ${statusDot(p.status)} ${p.status || ''}
+    </span>`;
+    const techTags = (p.tags || [])
+        .map(t => `<span class="rounded-full border border-white/10 px-2 py-0.5 text-xs text-white/70">${t}</span>`)
+        .join('');
+
+    const img = p.img
+        ? `<img src="${p.img}" alt="${p.title}" loading="lazy"
+         class="h-40 w-full rounded-xl object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+         onerror="this.style.display='none'; this.nextElementSibling?.classList.remove('hidden');">`
+        : '';
+    const imgFallback = `<div class="hidden h-40 w-full rounded-xl bg-gradient-to-br from-white/10 to-white/5"></div>`;
+
+    // Prefer demo link for title, else repo, else no link
+    const titleHref = p.links?.demo || p.links?.repo || null;
+    const titleEl = titleHref
+        ? `<a href="${titleHref}" target="_blank" rel="noopener"
+         class="focus:outline-none focus:ring-2 focus:ring-white/30">${p.title}</a>`
+        : p.title;
+
+    const buttons = [
+        p.links?.demo ? `<a href="${p.links.demo}" target="_blank" rel="noopener"
+        class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30">Live demo</a>` : '',
+        p.links?.repo ? `<a href="${p.links.repo}" target="_blank" rel="noopener"
+        class="rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30">Source</a>` : ''
+    ].filter(Boolean).join('');
+
+    return `
+    <article class="project-card reveal opacity-0 translate-y-4 rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl transition-all duration-700 hover:border-white/20 hover:bg-white/10 focus-within:border-white/25">
+      <div class="mb-3 flex items-center justify-between">
+        <div class="flex items-center gap-2">${badge}</div>
+      </div>
+
+      <div class="group mb-4">
+        ${img}${imgFallback}
+      </div>
+
+      <h3 class="text-lg font-semibold tracking-tight">${titleEl}</h3>
+      <p class="mt-2 text-sm text-white/70">${p.summary}</p>
+
+      <div class="mt-4 flex flex-wrap gap-2">${techTags}</div>
+
+      <div class="mt-5 flex flex-wrap gap-2">
+        ${buttons || `<span class="rounded-md px-3 py-1.5 text-sm text-white/50">Details coming soon</span>`}
+      </div>
+    </article>
+  `;
+}
+
 function renderProjects(grid, items) {
     if (!grid) return;
 
-    // Exclude the one marked Featured. Since we only have 3 total, this will render 2.
-    const list = items.slice(0, 3); // include featured too, show all 3
+    // Decide which items appear in the grid
+    let list = items;
+    if (!SHOW_FEATURED_IN_GRID) {
+        list = items.filter(p => !(p.status || '').toLowerCase().includes('featured'));
+    }
+    // Cap visually to 3 (in case you add more later)
+    list = list.slice(0, 3);
 
-    grid.innerHTML = list.map(p => {
-        const badge = `<span class="rounded-full px-2 py-0.5 text-[10px] font-semibold ${badgeClasses(p.status)}">${p.status || ''}</span>`;
-        const techTags = (p.tags || [])
-            .map(t => `<span class="rounded-full border border-white/10 px-2 py-0.5 text-xs text-white/70">${t}</span>`)
-            .join('');
-
-        const img = p.img
-            ? `<img src="${p.img}" alt="${p.title}" class="h-40 w-full rounded-lg object-cover" onerror="this.style.display='none'; this.nextElementSibling?.classList.remove('hidden');">`
-            : '';
-        const imgFallback = `<div class="hidden h-40 w-full rounded-lg bg-gradient-to-br from-white/10 to-white/5"></div>`;
-
-        const buttons = [
-            p.links?.demo ? `<a href="${p.links.demo}" target="_blank" rel="noopener" class="rounded-md bg-white/10 px-3 py-1.5 text-sm hover:bg-white/15">Live demo</a>` : '',
-            p.links?.repo ? `<a href="${p.links.repo}" target="_blank" rel="noopener" class="rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10">Source</a>` : ''
-        ].filter(Boolean).join('');
-
-        return `
-      <article class="project-card reveal rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl transition-all duration-700 hover:border-white/20 hover:bg-white/10">
-        <div class="mb-3 flex items-center justify-between">
-          <div class="flex items-center gap-2">${badge}</div>
-        </div>
-
-        <div class="mb-4">
-          ${img}${imgFallback}
-        </div>
-
-        <h3 class="text-lg font-semibold">${p.title}</h3>
-        <p class="mt-2 text-sm text-white/70">${p.summary}</p>
-
-        <div class="mt-4 flex flex-wrap gap-2">${techTags}</div>
-
-        <div class="mt-5 flex flex-wrap gap-2">
-          ${buttons || `<span class="rounded-md px-3 py-1.5 text-sm text-white/50">Details coming soon</span>`}
-        </div>
-      </article>
-    `;
-    }).join('');
+    grid.innerHTML = list.map(buildProjectCard).join('');
 }
 
-// ===== Rename Projects heading -> Recent Projects (works without HTML edits) =====
+// ===== Rename Projects heading -> Recent Projects =====
 function renameProjectsHeading() {
     const el =
         document.querySelector('#projectsTitle') ||
