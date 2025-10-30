@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', () => {
     );
 });
 
-// ===== Projects data (3 total; CirrusWire removed) =====
+// ===== Projects data (3 total; no YouTube) =====
 const projects = [
     {
         title: "AI Voice Assistant",
@@ -72,8 +72,6 @@ function badgeClasses(status) {
     if (s.includes('progress')) return 'bg-yellow-700 text-white';
     return 'bg-white/20 text-white';
 }
-
-// Small dot accent next to status text
 function statusDot(status) {
     const s = (status || '').toLowerCase();
     const base = 'inline-block h-2 w-2 rounded-full';
@@ -148,7 +146,6 @@ function buildProjectCard(p) {
         : '';
     const imgFallback = `<div class="hidden h-40 w-full rounded-xl bg-gradient-to-br from-white/10 to-white/5"></div>`;
 
-    // Prefer demo link for title, else repo, else no link
     const titleHref = p.links?.demo || p.links?.repo || null;
     const titleEl = titleHref
         ? `<a href="${titleHref}" target="_blank" rel="noopener"
@@ -167,16 +164,12 @@ function buildProjectCard(p) {
       <div class="mb-3 flex items-center justify-between">
         <div class="flex items-center gap-2">${badge}</div>
       </div>
-
       <div class="group mb-4">
         ${img}${imgFallback}
       </div>
-
       <h3 class="text-lg font-semibold tracking-tight">${titleEl}</h3>
       <p class="mt-2 text-sm text-white/70">${p.summary}</p>
-
       <div class="mt-4 flex flex-wrap gap-2">${techTags}</div>
-
       <div class="mt-5 flex flex-wrap gap-2">
         ${buttons || `<span class="rounded-md px-3 py-1.5 text-sm text-white/50">Details coming soon</span>`}
       </div>
@@ -186,15 +179,11 @@ function buildProjectCard(p) {
 
 function renderProjects(grid, items) {
     if (!grid) return;
-
-    // Decide which items appear in the grid
     let list = items;
     if (!SHOW_FEATURED_IN_GRID) {
         list = items.filter(p => !(p.status || '').toLowerCase().includes('featured'));
     }
-    // Cap visually to 3 (in case you add more later)
     list = list.slice(0, 3);
-
     grid.innerHTML = list.map(buildProjectCard).join('');
 }
 
@@ -205,8 +194,38 @@ function renameProjectsHeading() {
         document.querySelector('#projects h2') ||
         document.querySelector('section#projects h2') ||
         document.querySelector('[data-section="projects"] h2');
-
     if (el) el.textContent = 'Recent Projects';
+}
+
+// ===== Inject Google Data Analytics badge (no HTML edits) =====
+function injectGoogleBadge() {
+    const BADGE_HTML = `
+    <span class="rounded-full bg-green-50/20 text-green-200 border border-green-300/30 px-3 py-1 text-xs">
+      Google Data Analytics — pending
+    </span>`;
+    // Preferred containers if they exist:
+    const target =
+        document.getElementById('heroBadges') ||
+        document.querySelector('.hero-badges') ||
+        document.querySelector('#hero .badges') ||
+        document.querySelector('[data-section="hero"] .badges');
+
+    if (target) {
+        target.insertAdjacentHTML('beforeend', BADGE_HTML);
+        return;
+    }
+
+    // Fallback: insert after the first H1 on the page (usually your name)
+    const h1 =
+        document.querySelector('#hero h1') ||
+        document.querySelector('[data-section="hero"] h1') ||
+        document.querySelector('h1');
+    if (h1 && h1.parentElement) {
+        const wrap = document.createElement('div');
+        wrap.className = 'mt-4 flex flex-wrap gap-2';
+        wrap.innerHTML = BADGE_HTML;
+        h1.parentElement.appendChild(wrap);
+    }
 }
 
 // ===== Reveal on scroll =====
@@ -233,6 +252,7 @@ window.addEventListener("DOMContentLoaded", () => {
     renameProjectsHeading();
     const grid = document.getElementById("projectsGrid");
     renderProjects(grid, projects);
+    injectGoogleBadge();
     requestAnimationFrame(() => revealOnScroll());
 });
 
