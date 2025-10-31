@@ -9,6 +9,7 @@
     <!-- Tailwind / SEO -->
     <link rel="canonical" href="https://dostonbek.me" />
     <link rel="stylesheet" href="/src/input.css">
+    <link rel="stylesheet" href="/src/hero.css">
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="description"
         content="Portfolio of Dostonbek Davlatov — Software Developer, AI Enthusiast, and Product Builder. Showcasing AI projects, web apps, and more.">
@@ -27,21 +28,9 @@
     <meta property="og:url" content="https://dostonbek.me">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Dostonbek Davlatov">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Dostonbek Davlatov — Portfolio">
-    <meta name="twitter:description"
-        content="Showcasing AI projects, web apps, and my journey as a product builder and software developer.">
-    <meta name="twitter:image" content="https://dostonbek.me/preview.png">
 </head>
 
-<body class="bg-black text-white min-h-screen">
-    <!-- Background glow -->
-    <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div class="absolute -top-32 -left-24 h-72 w-72 rounded-full bg-purple-600/30 blur-3xl"></div>
-        <div class="absolute -bottom-24 -right-20 h-80 w-80 rounded-full bg-blue-500/30 blur-3xl"></div>
-    </div>
+<body class="bg-black text-white min-h-screen relative overflow-x-hidden">
 
     <!-- Navbar -->
     <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-black/40">
@@ -57,6 +46,8 @@
                 <li><a href="#contact" class="rounded bg-white/10 px-3 py-1.5 hover:bg-white/15">Contact</a></li>
             </ul>
         </nav>
+
+        <!-- Mobile menu -->
         <ul id="menuMobile" class="mx-auto hidden max-w-6xl flex-col gap-3 px-4 pb-4 text-sm md:hidden">
             <li><a href="#projects" class="block rounded px-3 py-2 hover:bg-white/10">Projects</a></li>
             <li><a href="#skills" class="block rounded px-3 py-2 hover:bg-white/10">Skills</a></li>
@@ -67,7 +58,7 @@
 
     <!-- Hero -->
     <section id="home"
-        class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
+        class="relative hero-bg mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
         <div>
             <p class="mb-3 text-xs uppercase tracking-[0.2em] text-white/60">AI • Product • Startups</p>
             <h1 class="text-4xl font-bold leading-tight md:text-6xl">
@@ -75,9 +66,17 @@
                 <span id="nameTyper" class="text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text"
                     data-text="Dostonbek Davlatov"></span>
             </h1>
+
             <p id="tagline" class="mt-4 text-white/70 md:text-lg min-h-[3rem]"
-                data-text="Tech-savvy builder and problem solver. I design, ship, and support AI-powered tools. Future founder energy. Let’s build something useful.">
-            </p>
+                data-text="Bridging people and technology. Code, culture, creativity — one mission."></p>
+
+            <!-- Badges: main.js will append Google badge here -->
+            <div id="heroBadges" class="mt-4 flex flex-wrap gap-2">
+                <span class="rounded-full bg-blue-500/10 text-blue-300 border border-blue-300/30 px-3 py-1 text-xs">
+                    AI Builder
+                </span>
+            </div>
+
             <div class="mt-8 flex flex-wrap gap-3">
                 <a href="#projects"
                     class="rounded-lg bg-gradient-to-r from-purple-500 to-cyan-500 px-5 py-2.5 font-medium text-black">View
@@ -89,6 +88,7 @@
                     class="rounded-lg border border-white/15 px-5 py-2.5 font-medium text-white/90 hover:bg-white/10"
                     target="_blank" rel="noopener" download>Download Resume</a>
             </div>
+
             <div class="mt-6 flex flex-wrap gap-3 text-sm text-white/60">
                 <span class="rounded-full border border-white/10 px-3 py-1">Python</span>
                 <span class="rounded-full border border-white/10 px-3 py-1">Flask</span>
@@ -97,13 +97,13 @@
             </div>
         </div>
 
-        <!-- Dynamic Featured card gets injected here -->
+        <!-- Filled dynamically by main.js -->
         <div id="featuredCard" class="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur"></div>
     </section>
 
     <!-- Projects -->
     <section id="projects" class="mx-auto max-w-6xl px-4 py-20">
-        <h2 class="text-2xl font-semibold">Projects</h2>
+        <h2 id="projectsTitle" class="text-2xl font-semibold">Recent Projects</h2>
         <p class="mt-2 text-white/70">Stuff I’ve built or shipped recently.</p>
         <div id="projectsGrid" class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
     </section>
@@ -129,10 +129,26 @@
         <h2 class="text-2xl font-semibold">About</h2>
         <div class="mt-4 grid gap-8 md:grid-cols-3">
             <div class="md:col-span-2 space-y-4 text-white/80">
-                <p>I’m Dostonbek Davlatov — a software developer and AI enthusiast based in San Francisco. I like
-                    building practical things: tools people can click, call, or share.</p>
-                <p>Recent work includes an <strong>AI Phone Assistant</strong>, a clean <strong>Afsona</strong> web app,
-                    and launching a YouTube Shorts brand (<strong>CirrusWire</strong>).</p>
+                <p>I’m <strong>Dostonbek Davlatov</strong> — a technology-driven professional with a passion for
+                    bridging
+                    the gap between <strong>people, business, and technology</strong>. My journey began in <strong>South
+                        Korea</strong>,
+                    where I studied <strong>Computer Science</strong> and built a foundation in programming and data
+                    analysis.</p>
+                <p>After moving to the <strong>United States</strong>, I joined <strong>AT&T</strong>, where I advanced
+                    from
+                    <strong>Sales Representative</strong> to <strong>Assistant Manager</strong> within two years —
+                    leading one of
+                    Northern California’s top-performing <strong>Battleship stores</strong>.
+                </p>
+                <p>I’m currently completing the <strong>Google Data Analytics Professional Certificate</strong> and have
+                    finished
+                    <strong>Angela Yu’s 100 Days of Python Challenge</strong>, expanding my skills in <strong>Python,
+                        data analysis, and automation</strong>.
+                </p>
+                <p>Fluent in <strong>English, Korean, Russian, and Uzbek</strong>, I combine leadership and technical
+                    creativity to build
+                    meaningful, people-first tech solutions.</p>
             </div>
         </div>
     </section>
@@ -146,7 +162,7 @@
         </p>
 
         <div class="mt-6 grid gap-6 md:grid-cols-3">
-            <!-- Left: quick info -->
+            <!-- Quick info -->
             <div class="space-y-3">
                 <div class="rounded-lg border border-white/10 bg-white/5 p-4">
                     <h3 class="font-semibold">Location</h3>
@@ -161,17 +177,14 @@
                             rel="noopener">LinkedIn</a>
                         <a class="underline hover:text-white" href="https://github.com/Nick0422" target="_blank"
                             rel="noopener">GitHub</a>
-                        <a class="underline hover:text-white" href="https://youtube.com/@CirrusWire" target="_blank"
-                            rel="noopener">YouTube</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Right: message form -->
+            <!-- Message form -->
             <div class="md:col-span-2">
                 <div class="rounded-lg border border-white/10 bg-white/5 p-6">
                     <h3 class="font-semibold">Send a message</h3>
-                    <!-- Replace YOUR_FORM_ID on Formspree (https://formspree.io/forms) -->
                     <form id="contactForm" action="https://formspree.io/f/xvgqvvjj" method="POST"
                         class="mt-4 grid gap-3">
                         <input name="name" placeholder="Your name" required
@@ -181,7 +194,6 @@
                         <textarea name="message" placeholder="Your message" rows="4" required
                             class="w-full rounded border border-white/10 bg-white/5 px-3 py-2 outline-none placeholder:text-white/40"></textarea>
 
-                        <!-- Optional extras -->
                         <input type="hidden" name="_subject" value="New message from dostonbek.me">
                         <input type="text" name="_honeypot" tabindex="-1" autocomplete="off" class="hidden" />
 
@@ -190,19 +202,14 @@
                             Send
                         </button>
 
-                        <!-- Status message -->
                         <p id="formStatus" class="text-sm text-white/60" aria-live="polite"></p>
                     </form>
-
-                    <p class="mt-2 text-xs text-white/50">
-                        Prefer email? Write me at <a class="underline"
-                            href="mailto:dostonbekmailme@gmail.com">dostonbekmailme@gmail.com</a>.
-                    </p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Scripts -->
     <script type="module" src="/src/main.js"></script>
 </body>
 
