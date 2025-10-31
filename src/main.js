@@ -58,7 +58,7 @@ const projects = [
         status: "Live",
         summary:
             "The site you’re viewing. Built with Vite + Tailwind, deployed on Vercel, with clean SEO and DX.",
-        img: "/images/portfolio.jpg",
+        img: "/images/portfolio.png",
         tags: ["Tailwind", "Vite", "Vercel"],
         links: { repo: "https://github.com/Nick0422/dostonbek-portfolio" }
     }
