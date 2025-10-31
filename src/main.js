@@ -152,7 +152,7 @@ function renameProjectsHeading() {
 function injectGoogleBadge() {
     const BADGE_HTML = `
     <span class="rounded-full bg-green-50/20 text-green-200 border border-green-300/30 px-3 py-1 text-xs">
-      Google Data Analytics — pending
+      Google Data Analytics Certificate — pending
     </span>`;
     const target =
         document.getElementById('heroBadges') ||
